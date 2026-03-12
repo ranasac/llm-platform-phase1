@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  triton:
+    build: ./model-serving
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
+
+  api:
+    build: ./api-service
+    ports:
+      - "8080:8001"
+    depends_on:
+      - triton
